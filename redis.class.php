@@ -10,15 +10,15 @@ if(!defined(DISKROOMS)){
 }
 
 class Hredis{
-    private static $redis_config = [];
+    private static $redis_config = array();
     private static $instance_redis = NULL; 
     
     public function __construct($ip = '127.0.0.1',$port = '6379',$pwd = ''){
-        self::$redis_config = [
+        self::$redis_config = array(
             'ip'=>$ip,
             'port'=>$port,
             'pwd'=>$pwd
-        ];
+        );
         if(self::$instance_redis == null){
             self::$instance_redis = new Redis();
         }
@@ -42,7 +42,7 @@ class Hredis{
     
     /**
      * 测试redis服务 notify-keyspace-events 配置是否打开
-     * 设置socket过期时间 2秒后还未收到消息即说明没有配置 notify-keyspace-events 参数
+     * 设置socket过期时间 3秒后还未收到消息即说明没有配置 notify-keyspace-events 参数
      */
     public function testNotifyKeyEvent(){
         $this->_conncet();
@@ -82,6 +82,7 @@ class Hredis{
      * 往Redis中写入数据并设置过期时间
      */
     public function setex($key = '',$value = '', $timeout = 3){
+        $this->_conncet();
         self::$instance_redis->setex($key,$timeout,$value);
     }
 }
