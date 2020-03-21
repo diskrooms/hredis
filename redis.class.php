@@ -13,7 +13,7 @@ class Hredis{
     private static $redis_config = [];
     private static $instance_redis = NULL; 
     
-    public function __construct($ip,$port = '6379',$pwd = ''){
+    public function __construct($ip = '127.0.0.1',$port = '6379',$pwd = ''){
         self::$redis_config = [
             'ip'=>$ip,
             'port'=>$port,

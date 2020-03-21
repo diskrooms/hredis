@@ -1,7 +1,7 @@
 <?php
 define('DISKROOMS', 'DISKROOMS');
 include 'redis.class.php';
-$redis = new Hredis('127.0.0.1');
+$redis = new Hredis();
 $redis->testNotifyKeyEvent(); //测试是否打开 notify-keyspace-events 配置,强烈建议使用此方法进行测试.测试完毕后再关闭
 $redis->registerListenFunction('gift'); //注册监听函数
 
